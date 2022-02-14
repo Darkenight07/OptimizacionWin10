@@ -1,26 +1,14 @@
 @echo off
 color 43
-title Optimizacion by TecnoSamuel v1.0
+title Optimizacion by TecnoSamuel v2.5
 echo ------------------------------------------------------------
 echo -                                                          -
-echo Bienvenido a este programa de optimizacion v1.0, empecemos!-
+echo Bienvenido a este programa de optimizacion v2.5, empecemos!-
 echo -                                                          -
 echo ------------------------------------------------------------
 pause
-cls
-:inicio
-echo Que letra tienes asignada donde esta instalado el windows?
-set /p letra=Indique su letra:  
-goto paso_usuario 
-:paso_usuario
-echo Para poder borrar la cache etc.. se necesitara tu nombre de usuario de tu pc.
-pause
-cls
-set /p nameuser=Indique su usuario: 
-goto 2paso
 cls
 :2paso
-pause
 cls
 echo --------------------
 echo ----Herramientas----
@@ -38,12 +26,12 @@ pause
 cls
 set /p delete_cache_confirmation= Esto borrara la cache de tu pc, estas seguro? (s/n): 
 echo Has elegido la letra %letra% y el nombre de usuario %nameuser% eliminando cache...
-if %delete_cache_confirmation%==s rmdir /s /q %letra%:\Users\%nameuser%\AppData\Local\Temp\
-if %delete_cache_confirmation%==s rmdir /s /q %letra%:\Windows\Temp\
+if %delete_cache_confirmation%==s rmdir /s /q %TEMP%
+if %delete_cache_confirmation%==s rmdir /s /q %HOMEDRIVE%\Windows\Temp\
 if %delete_cache_confirmation%==n goto 2paso 
 echo Se ha limpiado la carpeta Temp, donde se ubica los archivos cache, si no se ha podido borrar algunos archivos es normal no todos se pueden borrar.
-mkdir %letra%:\Users\%nameuser%\AppData\Local\Temp
-mkdir %letra%:\Windows\Temp
+mkdir %TEMP%
+mkdir %HOMEDRIVE%\Windows\Temp
 goto 2paso
 :delete_ondedrive
 cls
@@ -86,7 +74,12 @@ REG DELETE "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f >
 REG DELETE "HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > NUL 2>&1
 echo Desinstalacion completada
 pause
+set /p reinicio= Reinicio recomendado Te gustaria reniciar tu pc? (s/n)
+if %reinicio%==s (
+shutdown /r
+) else (
 goto 2paso
+)
 :salir
 cls
 echo --------------------------
@@ -95,4 +88,3 @@ echo -      el programa!      -
 echo --------------------------
 pause
 exit
-
