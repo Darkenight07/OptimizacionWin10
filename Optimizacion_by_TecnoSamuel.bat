@@ -1,9 +1,9 @@
 @echo off
 color 43
-title Optimizacion by TecnoSamuel v2.5
+title Optimizacion by TecnoSamuel v1.0
 echo ------------------------------------------------------------
 echo -                                                          -
-echo Bienvenido a este programa de optimizacion v2.5, empecemos!-
+echo Bienvenido a este programa de optimizacion v1.0, empecemos!-
 echo -                                                          -
 echo ------------------------------------------------------------
 pause
