@@ -1,6 +1,6 @@
 #Created by TecnoSamuel
 
-ACTUALIZACIÓN v2.0
+ACTUALIZACIÓN v2.5
 
   Detalles de la actualización:
   
