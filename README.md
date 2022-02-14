@@ -3,6 +3,7 @@
 ACTUALIZACIÓN v2.0
 
   Detalles de la actualización:
+  
       1. Bugs reparados con exito
       2. Codigo del programa mas simplificado de lo que estaba
       
