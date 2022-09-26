@@ -30,6 +30,7 @@ if %delete_cache_confirmation%==s rmdir /s /q %TEMP%
 if %delete_cache_confirmation%==s rmdir /s /q %HOMEDRIVE%\Windows\Temp\
 if %delete_cache_confirmation%==n goto 2paso 
 echo Se ha limpiado la carpeta Temp, donde se ubica los archivos cache, si no se ha podido borrar algunos archivos es normal no todos se pueden borrar.
+pause
 mkdir %TEMP%
 mkdir %HOMEDRIVE%\Windows\Temp
 goto 2paso
