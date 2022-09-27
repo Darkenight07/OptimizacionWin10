@@ -1,9 +1,9 @@
 @echo off
 color 43
-title Optimizacion by TecnoSamuel v1.0
+title Optimizacion by TecnoSamuel v1.5
 echo ------------------------------------------------------------
 echo -                                                          -
-echo Bienvenido a este programa de optimizacion v1.0, empecemos!-
+echo Bienvenido a este programa de optimizacion v1.5, empecemos!-
 echo -                                                          -
 echo ------------------------------------------------------------
 pause
@@ -16,11 +16,14 @@ echo --------------------
 echo Que quieres hacer? (1,2 o 3):
 echo 1. Borrar cache
 echo 2. Desinstalar Onedrive (Windows 10)
-echo 3. Salir del programa.
+echo 3. Desfragmentar unidades
+echo.
+echo 4. Salir del programa.
 set /p tools=Indique su opcion: 
 if %tools%==1 goto delete_cache
 if %tools%==2 goto delete_ondedrive
-if %tools%==3 goto salir
+if %tools%==3 goto desfragmentar
+if %tools%==4 goto salir
 :delete_cache
 pause
 cls
@@ -30,7 +33,6 @@ if %delete_cache_confirmation%==s rmdir /s /q %TEMP%
 if %delete_cache_confirmation%==s rmdir /s /q %HOMEDRIVE%\Windows\Temp\
 if %delete_cache_confirmation%==n goto 2paso 
 echo Se ha limpiado la carpeta Temp, donde se ubica los archivos cache, si no se ha podido borrar algunos archivos es normal no todos se pueden borrar.
-pause
 mkdir %TEMP%
 mkdir %HOMEDRIVE%\Windows\Temp
 goto 2paso
@@ -75,9 +77,40 @@ REG DELETE "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f >
 REG DELETE "HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > NUL 2>&1
 echo Desinstalacion completada
 pause
-set /p reinicio= Reinicio recomendado Te gustaria reniciar tu pc? (s/n)
+set /p reinicio= Reinicio recomendado Te gustaria reniciar tu pc? (s/n) 
 if %reinicio%==s (
 shutdown /r
+) else (
+goto 2paso
+)
+:desfragmentar
+cls
+echo 1. C: (Por defecto)
+echo 2. Otro
+set /p unidad_num= Que unidad quieres desfragmentar? (1 o 2) 
+if %unidad_num%==1 (
+goto desfragmentar_defecto
+) else (
+goto desfragmentar_otro
+)
+:desfragmentar_defecto
+cls
+set /p desfragmentar_confirmation= Estas seguro que quieres desfragmentar tu unidad C:? (s/n) 
+if %desfragmentar_confirmation%==s (
+defrag C: /u /v
+pause
+goto 2paso
+) else (
+goto 2paso
+)
+:desfragmentar_otro
+cls
+set /p desfragmentar_elige_otro= Que unidad quieres desfragmentar? (Ej: D): 
+set /p desfragmentar_elige_otro_confirmation= Estas seguro que quieres desfragmentar tu unidad %desfragmentar_elige_otro%:? (s/n) 
+if %desfragmentar_elige_otro_confirmation%==s (
+defrag %desfragmentar_elige_otro%: /u /v
+pause
+goto 2paso
 ) else (
 goto 2paso
 )
